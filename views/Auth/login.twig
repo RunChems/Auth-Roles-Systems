@@ -1,0 +1,37 @@
+{% extends  "templates/app.twig" %}
+
+{% block main %}
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2>Iniciar Sesión</h2>
+                <p>
+                    ¿Aun no eres un socio o fan de <strong> Run Chems Developers</strong>?
+                    <a href="/register">Registrate</a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8 offset-2">
+                <form action="/login" method="POST">
+                    <input type="text" class="mt-5 form-control" name="user" placeholder="Username o Email">
+                    <input type="password" class="mt-5 form-control" name="password" placeholder="Contraseña">
+
+                    <div class="row">
+                        <div class="col-4 offset-4">
+                            <input type="submit" class="mt-5 btn btn-danger w-100"
+                                   value="Login">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+{% endblock %}

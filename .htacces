@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteCond %{THE:REQUEST} /public/([^\s?]*) [NC]
+RewriteRule ^ [L,NE,R=302]
+RewriteRule ^((?!public/).*)$ /public/index/$1 [L,NC]
