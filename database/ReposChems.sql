@@ -56,7 +56,7 @@ alter table roles_permissions
 
 alter table roles_permissions
     add constraint
-        foreign_perm foreign key (perm_id) references permissions (id);
+        foreign_perm foreign key (permission_id) references permissions (id);
 
 create table extra_permissions
 (
@@ -72,3 +72,69 @@ alter table extra_permissions
         foreign_user foreign key (user_id) references auths (id);
 
 
+alter table permissions
+    add column route  varchar(50)                        not null,
+    add column method enum ('POST','GET','PUT','DELETE') not null;
+
+insert into roles_permissions(role_id, permission_id)
+values (1, 1);
+
+select *
+from roles;
+
+
+
+insert into roles(role_name)
+values ('admin');
+
+insert into roles(role_name)
+values ('User');
+
+insert into roles(role_name)
+values ('MegaFan');
+
+
+
+insert into permissions(permission_name, route, method)
+values ('access_admin', 'admin', 'GET');
+
+insert into permissions(permission_name, route, method)
+values ('access_users', 'admin.users', 'GET');
+
+insert into permissions(permission_name, route, method)
+values ('access_index', 'index', 'GET');
+
+insert into permissions(permission_name, route, method)
+values ('access_projects', 'projects', 'GET');
+
+
+insert into roles_permissions(role_id, permission_id)
+values (1, 1);
+insert into roles_permissions(role_id, permission_id)
+values (1, 2);
+insert into roles_permissions(role_id, permission_id)
+values (1, 3);
+insert into roles_permissions(role_id, permission_id)
+values (1, 4);
+
+
+
+create view view_roles_permissions as
+select r.role_name, p.permission_name, p.route, p.method
+from roles as r
+         inner join roles_permissions as rp on rp.role_id = r.id
+         inner join permissions as p on rp.permission_id = p.id;
+
+
+select *
+from view_roles_permissions;
+
+insert into auths_roles
+values (1, 1);
+
+
+select *
+from auths_roles;
+
+alter table roles_permissions
+    change column permission_id permission_id int not null;

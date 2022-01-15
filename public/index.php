@@ -1,7 +1,5 @@
 <?php
 //Debug errors in dev mode
-
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 ini_set('session.gc_maxlifetime', 60 * 60 * 24);
@@ -12,6 +10,7 @@ require_once '../vendor/autoload.php';
 require_once '../config/database.php';
 
 use Aura\Router\RouterContainer;
+use App\Services\AccessControlService;
 
 session_start();
 

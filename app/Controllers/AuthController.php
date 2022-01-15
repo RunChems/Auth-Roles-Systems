@@ -2,32 +2,52 @@
 
 namespace App\Controllers;
 
+use App\Constants\UserRoles;
 use App\Models\Auth;
 use Laminas\Diactoros\Response\HtmlResponse;
 
 
 class AuthController extends Controller
 {
-    public function show_register(): HtmlResponse
+    public function showRegister(): HtmlResponse
     {
+
+        if ($this->isLogged()) {
+            header('Location: /');
+        }
+
         return self::view('Auth/register.twig', []);
     }
 
     public function login(): HtmlResponse
     {
+
+        if ($this->isLogged()) {
+            header('Location: /');
+        }
+
         return self::view('Auth/login.twig', []);
     }
 
-    public function authenticate($request): HtmlResponse
+    public function authenticate($request)
     {
         $auth = $this->getAuthenticatedUser($request);
-
         if (is_null($auth)) {
             return self::view('Auth/login.twig', ['errors' => ['Invalid credentials']]);
         }
 
         $_SESSION['user'] = $auth;
-        return self::view('index.twig', []);
+
+        $roles = array_map(function ($role) {
+            return $role['role_name'];
+        }, $auth->roles()->get()->toArray());
+
+        header('Location: ' . UserRoles::matchRoute($roles));
+    }
+
+    private function isLogged(): bool
+    {
+        return isset($_SESSION['user']);
     }
 
     private function getAuthenticatedUser($request)
@@ -39,12 +59,19 @@ class AuthController extends Controller
         if (!password_verify($request['password'], $auth['password'])) {
             return null;
         }
+
+
         return $auth;
     }
 
 
     public function register($request): HtmlResponse
     {
+
+        if ($this->isLogged()) {
+            header('Location: /');
+        }
+
         $data = $request->getParsedBody();
         if ($data['password'] == $data['password_confirm']) {
             $user = new Auth();

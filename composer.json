@@ -8,6 +8,7 @@
     "illuminate/database": "^8.76",
     "laminas/laminas-diactoros": "^2.8",
     "aura/router": "^3.1",
-    "twig/twig": "^3.3"
+    "twig/twig": "^3.3",
+    "middlewares/aura-router": "^2.0"
   }
 }
