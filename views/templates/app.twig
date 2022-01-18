@@ -7,53 +7,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
-          integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="../Resources/style.css">
 
-    <title>Resume</title>
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    <link href="resources/css/styles.css" rel="stylesheet"/>
+    <link href="resources/css/forms.css" rel="stylesheet"/>
+
+    <title>AuthSystem</title>
 </head>
 
-<body>
+<body id="page-top">
+
+<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="/">RunChems Developers</a>
+        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse d-flex justify-content-evenly" id="navbarResponsive">
+            {% if session['user'] is empty %}
+                <ul class="navbar-nav d-flex justify-content-end w-100">
+                    {% if session['route'] == 'login' %}
+                        <li class="nav-item">
+                            <a class="alert-link text-light" href="/register"> Registrarse
+                            </a>
+                        </li>
+                    {% elseif session['route'] == 'register' %}
+                        <li class="nav-item">
+                            <a class='alert-link text-light' href="/login"> iniciar Sesión</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="alert-link text-light" href="/register"> Registrarse
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class='alert-link text-light' href="/login"> Iniciar Sesión</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% else %}
+                <ul class="navbar-nav w-100 d-flex justify-content-evenly">
+                    <li class="nav-item">
+                        <a class='alert-link text-light' href="/"> Bienvenido {{ session['user']['username'] }}</a>
+                    </li>
+                    {% if session['role']=='MegaFan' %}
+                        <li class="nav-item">
+                            <a class='alert-link text-light' href="/Megafan"> Megafan</a>
+                        </li>
+                    {% elseif session['role']=='admin' %}
+                        <li class="nav-item">
+                            <a class='alert-link text-light' href="/admin"> Administrar</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="alert-link text-light" href="/logout"> Cerrar Sesión
+                        </a>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>
 <div class="container-fluid bg-danger d-flex align-items-center justify-content-between">
 
     <a href="/" class="navbar-brand"><h1 class="text-center text-white py-2">Run Chems Developers</h1></a>
 
-    {% if session['user'] is empty %}
-        <ul class="navbar-nav">
-            {% if session['route'] == 'login' %}
-                <li class="nav-item">
-                    <a class="alert-link text-light" href="/register"> Registrarse
-                    </a>
-                </li>
-            {% elseif session['route'] == 'register' %}
-                <li class="nav-item">
-                    <a class='alert-link text-light' href="/login"> Iniciar Sesión</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="alert-link text-light" href="/register"> Registrarse
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class='alert-link text-light' href="/login"> Iniciar Sesión</a>
-                </li>
-            {% endif %}
-        </ul>
-    {% else %}
-        {# Todo: Close session #}
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class='alert-link text-light' href="/"> Bienvenido {{ session['user']['username'] }}</a>
-            </li>
-            <li class="nav-item">
-                <a class="alert-link text-light" href="/logout"> Cerrar Sesión
-                </a>
-            </li>
-
-        </ul>
-    {% endif %}
 
 </div>
 
@@ -72,14 +94,14 @@
 
 
 {% endblock %}
-<div class="container-fluid bg-danger mt-5 ">
+{# <div class="container-fluid bg-danger mt-5 "> #}
 
-    <div id="resume-footer" class="text-white row w-100">
-        <div class="col-6 offset-3 text-center  py-1">
-            Designed by <a class="text-success" href="https://github.com/CaptainRun" target="_blank"> CaptainRun</a>
-        </div>
-    </div>
-</div>
+{#    <div id="resume-footer" class="text-white row w-100"> #}
+{#        <div class="col-6 offset-3 text-center  py-1"> #}
+{#            Designed by <a class="text-success" href="https://github.com/CaptainRun" target="_blank"> CaptainRun</a> #}
+{#        </div> #}
+{#    </div> #}
+{# </div> #}
 
 
 <!-- Optional JavaScript -->

@@ -9,5 +9,64 @@
                 <h2>Bienvenido Administrador</h2>
             </div>
         </div>
+        <div class="row my-3">
+            {% for role in roles %}
+                {% if role.role_name != 'super_user' %}
+                    <div class="col-12">
+
+                        <div class="my-2 text-center">
+                            <h3> {{ role.role_name }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <form action="/updateRole" class="d-inline" method="POST">
+                            <div class="row">
+
+                                {% for permission in role['permissions'] %}
+                                    <div class="col-3 p-0 m-0">
+                                        <input type="hidden" name="role_id" value="{{ role.id }}">
+                                        <label for="{{ permission.id }}">
+                                            <p>{{ permission.permission_name }}
+                                            </p>
+                                        </label>
+                                        <input name="{{ permission.id }}" id="{{ permission.id }}"
+                                               type="checkbox" checked class="mb-3">
+                                    </div>
+                                {% endfor %}
+
+                                {% for permission in permissions %}
+                                    {% set found = false %}
+                                    {% for perm in role['permissions'] %}
+
+                                        {% if perm.permission_name == permission.permission_name %}
+                                            {% set found = true %}
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if found == false %}
+                                        <div class="col-3 p-0 m-0">
+                                            <label for="{{ permission.id }}">
+                                                <p>{{ permission.permission_name }}
+                                                </p>
+                                            </label>
+                                            <input name="{{ permission.id }}" id="{{ permission.id }}"
+                                                   type="checkbox" class="mb-3">
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                <input type="submit" class="btn btn-primary" value="Actualizar">
+                            </div>
+                        </form>
+
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+
     </div>
+
+
 {% endblock %}
+{# <script src="resources/js/roles.js"></script> #}

@@ -34,15 +34,22 @@ $map->get('admin', '/admin', [
     , 'action' => 'index']);
 
 
-$matcher = $routerContainer->getMatcher();
+$map->post('admin.update', '/updateRole', [
+    'controller' => 'App\Controllers\AdminController'
+    , 'action' => 'updateRoles']);
 
+$map->get('Megafan', '/Megafan', [
+    'controller' => 'App\Controllers\IndexController'
+    , 'action' => 'megafan']);
+
+
+$matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);
 
 
 if (!$route) {
     require '../views/404.twig';
 } else {
-
     $allowed = AccessControlService::grantAccess($route->name, $request->getMethod());
     if (!$allowed) {
         require '../views/403.twig';

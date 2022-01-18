@@ -15,19 +15,35 @@ class AccessControlService
      */
     public static function grantAccess(string $routeToGo, string $method): bool
     {
+
         if (PublicRoutes::isPublicRoute($routeToGo)) {
             return true;
         }
 
+        $user = self::checkLogin();
+        $permissions = $user->roles->pluck('permissions')->flatten()->toArray();
+
+        $availableRoutes = self::getAllAvailableRoutes($permissions);
+
+        return self::isAccessible($availableRoutes, $routeToGo, $method) || self::isSuperUser($user);
+    }
+
+    private static function checkLogin()
+    {
         if (is_null($user = $_SESSION['user'])) {
             header('Location: /login');
         }
+        return $user;
+    }
 
-        $permissions = $user->roles->pluck('permissions')->flatten()->toArray();
-        $availableRoutes = self::getAllAvailableRoutes($permissions);
 
-
-        return self::isAccessible($availableRoutes, $routeToGo, $method);
+    private static function isSuperUser($user)
+    {
+        foreach ($user->roles as $role) {
+            if ($role->role_name == 'super_user') {
+                return true;
+            }
+        }
     }
 
     /**

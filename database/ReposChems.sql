@@ -48,7 +48,7 @@ alter table permissions
 create table roles_permissions
 (
     role_id int not null,
-    perm_id int not null
+    perm_id int not nulladminCOn
 );
 alter table roles_permissions
     add constraint
@@ -137,4 +137,51 @@ select *
 from auths_roles;
 
 alter table roles_permissions
-    change column permission_id permission_id int not null;
+    change column perm_id permission_id int not null;
+
+
+
+select *
+from permissions;
+
+insert into permissions(permission_name, route, method)
+values ('access_megafan', 'Megafan', 'GET');
+select *
+from auths;
+select *
+from roles;
+select *
+from permissions;
+select *
+from roles_permissions;
+
+select *
+from auths_roles;
+
+select *
+from permissions;
+
+insert into roles_permissions(role_id, permission_id)
+values (2, 5);
+insert into auths_roles(auth_id, role_id)
+values (3, 3);
+insert into auths_roles(auth_id, role_id)
+values (2, 2);
+
+insert into auths_roles(auth_id, role_id)
+values (1, 1);
+
+
+insert into roles(role_name)
+values ('super_user');
+
+insert into auths_roles(auth_id, role_id)
+values (1, 4);
+
+
+
+
+
+
+
+

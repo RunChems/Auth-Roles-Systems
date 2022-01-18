@@ -56,6 +56,12 @@ class AuthController extends Controller
         if (is_null($auth = Auth::where('email', $request['user'])->first())) {
             $auth = Auth::where('username', $request['user'])->first();
         }
+
+        if (is_null($auth)) {
+            return null;
+        }
+
+
         if (!password_verify($request['password'], $auth['password'])) {
             return null;
         }
@@ -68,9 +74,6 @@ class AuthController extends Controller
     public function register($request): HtmlResponse
     {
 
-        if ($this->isLogged()) {
-            header('Location: /');
-        }
 
         $data = $request->getParsedBody();
         if ($data['password'] == $data['password_confirm']) {
@@ -87,6 +90,7 @@ class AuthController extends Controller
 
     public function logout()
     {
+        session_unset();
         unset($_SESSION['user']);
         header('Location: /register');
 

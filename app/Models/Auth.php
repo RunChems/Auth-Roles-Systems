@@ -15,7 +15,8 @@ class Auth extends Model
 
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class, 'auths_roles');
+        return $this->belongsToMany(Role::class, 'auths_roles',
+            'auth_id', 'role_id');
     }
 
     public function extraPermissions(): BelongsToMany
