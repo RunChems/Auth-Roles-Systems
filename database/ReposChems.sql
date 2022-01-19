@@ -48,7 +48,7 @@ alter table permissions
 create table roles_permissions
 (
     role_id int not null,
-    perm_id int not nulladminCOn
+    perm_id int not null
 );
 alter table roles_permissions
     add constraint
@@ -180,8 +180,9 @@ values (1, 4);
 
 
 
+insert into permissions(permission_name, route, method)
+values ('access_users', 'admin.users', 'GET');
 
 
-
-
-
+insert into permissions(permission_name, route, method)
+values ('update_users', 'admin.users.update', 'POST');

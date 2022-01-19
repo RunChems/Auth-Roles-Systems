@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Constants\UserRoles;
 use App\Models\Auth;
+use App\Models\Role;
 use Laminas\Diactoros\Response\HtmlResponse;
 
 
@@ -82,6 +83,7 @@ class AuthController extends Controller
             $user->email = $data['email'];
             $user->password = password_hash($data['password'], PASSWORD_DEFAULT);
             $user->save();
+            $user->roles()->attach(Role::where('role_name', 'User'));
             return self::view('Auth/login.twig', []);
         } else {
             return self::view('Auth/register.twig', ['errors' => ['Passwords do not match', $data['password'], $data['password_confirm']]]);

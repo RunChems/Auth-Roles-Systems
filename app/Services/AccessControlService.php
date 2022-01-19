@@ -28,6 +28,9 @@ class AccessControlService
         return self::isAccessible($availableRoutes, $routeToGo, $method) || self::isSuperUser($user);
     }
 
+    /**
+     * @return mixed
+     */
     private static function checkLogin()
     {
         if (is_null($user = $_SESSION['user'])) {
@@ -37,10 +40,15 @@ class AccessControlService
     }
 
 
+    /**
+     * @param $user
+     * @return bool|void
+     */
     private static function isSuperUser($user)
     {
         foreach ($user->roles as $role) {
             if ($role->role_name == 'super_user') {
+                $_SESSION['role'] = 'super_user';
                 return true;
             }
         }
@@ -64,7 +72,7 @@ class AccessControlService
 
 
     /**
-     * @param $permissions
+     * @param $permissions : array of permissions to retrieve available routes
      * @return array
      */
     private static function getAllAvailableRoutes($permissions): array

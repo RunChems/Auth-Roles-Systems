@@ -43,6 +43,13 @@ $map->get('Megafan', '/Megafan', [
     , 'action' => 'megafan']);
 
 
+$map->get('admin.users', '/admin/users', [
+    'controller' => 'App\Controllers\AdminController'
+    , 'action' => 'users']);
+$map->post('admin.users.update', '/admin/users/update', [
+    'controller' => 'App\Controllers\AdminController'
+    , 'action' => 'updateUsers']);
+
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);
 

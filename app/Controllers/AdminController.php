@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\Auth;
 use App\Models\Permission;
 use App\Models\Role;
-use JetBrains\PhpStorm\ArrayShape;
 use Laminas\Diactoros\Response\HtmlResponse;
 
 class AdminController extends Controller
@@ -43,6 +43,41 @@ class AdminController extends Controller
         $permissions = Permission::all();
         return ['roles' => $roles,
             'permissions' => $permissions];
+
+    }
+
+    private function getAuthAndRoles(): array
+    {
+        $users = Auth::all();
+
+        return ['users' => $users,
+            'roles' => Role::all()];
+
+    }
+
+    public function users()
+    {
+        return self::view('admin/users.twig', $this->getAuthAndRoles());
+    }
+
+    public function updateUsers($request)
+    {
+
+        $data = $request->getParsedBody();
+        $user = Auth::find($data["user"]);
+        foreach (Role::all() as $role) {
+            $user->roles()->detach($role);
+        }
+
+        foreach ($data as $role => $allowed) {
+            if ($allowed) {
+                $rol = Role::find($role);
+                $user->roles()->attach($rol);
+            }
+        }
+
+        return self::view('admin/users.twig',
+            $this->getAuthAndRoles());
 
     }
 

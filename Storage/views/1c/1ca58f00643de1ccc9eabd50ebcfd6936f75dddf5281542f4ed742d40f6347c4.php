@@ -47,8 +47,8 @@ class __TwigTemplate_dbe33aa63f5c834c38629f389c7395aed063055bc8249129b04ecf6c3df
 
     <script src=\"https://use.fontawesome.com/releases/v5.15.4/js/all.js\" crossorigin=\"anonymous\"></script>
     <link href=\"https://fonts.googleapis.com/css?family=Montserrat:400,700\" rel=\"stylesheet\" type=\"text/css\"/>
-    <link href=\"resources/css/styles.css\" rel=\"stylesheet\"/>
-    <link href=\"resources/css/forms.css\" rel=\"stylesheet\"/>
+    <link href=\"/resources/css/styles.css\" rel=\"stylesheet\"/>
+    <link href=\"/resources/css/forms.css\" rel=\"stylesheet\"/>
 
     <title>AuthSystem</title>
 </head>
@@ -117,15 +117,19 @@ class __TwigTemplate_dbe33aa63f5c834c38629f389c7395aed063055bc8249129b04ecf6c3df
                             <a class='alert-link text-light' href=\"/Megafan\"> Megafan</a>
                         </li>
                     ";
-            } elseif ((0 === twig_compare((($__internal_compile_6 =             // line 61
-($context["session"] ?? null)) && is_array($__internal_compile_6) || $__internal_compile_6 instanceof ArrayAccess ? ($__internal_compile_6["role"] ?? null) : null), "admin"))) {
+            } elseif (((0 === twig_compare((($__internal_compile_6 =             // line 61
+($context["session"] ?? null)) && is_array($__internal_compile_6) || $__internal_compile_6 instanceof ArrayAccess ? ($__internal_compile_6["role"] ?? null) : null), "admin")) || (0 === twig_compare((($__internal_compile_7 = ($context["session"] ?? null)) && is_array($__internal_compile_7) || $__internal_compile_7 instanceof ArrayAccess ? ($__internal_compile_7["role"] ?? null) : null), "super_user")))) {
                 // line 62
                 echo "                        <li class=\"nav-item\">
-                            <a class='alert-link text-light' href=\"/admin\"> Administrar</a>
+                            <a class='alert-link text-light' href=\"/admin\"> Roles</a>
                         </li>
+                        <li>
+                            <a class='alert-link text-light' href=\"/admin/users\">Users</a>
+                        </li>
+
                     ";
             }
-            // line 66
+            // line 70
             echo "                    <li class=\"nav-item\">
                         <a class=\"alert-link text-light\" href=\"/logout\"> Cerrar Sesión
                         </a>
@@ -133,7 +137,7 @@ class __TwigTemplate_dbe33aa63f5c834c38629f389c7395aed063055bc8249129b04ecf6c3df
                 </ul>
             ";
         }
-        // line 72
+        // line 76
         echo "        </div>
     </div>
 </nav>
@@ -145,18 +149,18 @@ class __TwigTemplate_dbe33aa63f5c834c38629f389c7395aed063055bc8249129b04ecf6c3df
 </div>
 
 ";
-        // line 82
+        // line 86
         if (($context["errors"] ?? null)) {
-            // line 83
+            // line 87
             echo "    <div class=\"container mt-2 text-center\">
         <div class=\"row\">
             <div class=\"col-8 offset-2 alert-warning py-2\">
                 ";
-            // line 86
+            // line 90
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(($context["errors"] ?? null));
             foreach ($context['_seq'] as $context["_key"] => $context["error"]) {
-                // line 87
+                // line 91
                 echo "                    <p>";
                 echo twig_escape_filter($this->env, $context["error"], "html", null, true);
                 echo "</p>
@@ -165,18 +169,18 @@ class __TwigTemplate_dbe33aa63f5c834c38629f389c7395aed063055bc8249129b04ecf6c3df
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['error'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 89
+            // line 93
             echo "            </div>
         </div>
     </div>
 ";
         }
-        // line 93
+        // line 97
         $this->displayBlock('main', $context, $blocks);
-        // line 98
+        // line 102
         echo "
 ";
-        // line 105
+        // line 109
         echo "
 
 <!-- Optional JavaScript -->
@@ -195,11 +199,11 @@ class __TwigTemplate_dbe33aa63f5c834c38629f389c7395aed063055bc8249129b04ecf6c3df
 </html>";
     }
 
-    // line 93
+    // line 97
     public function block_main($context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 94
+        // line 98
         echo "
 
 ";
@@ -217,7 +221,7 @@ class __TwigTemplate_dbe33aa63f5c834c38629f389c7395aed063055bc8249129b04ecf6c3df
 
     public function getDebugInfo()
     {
-        return array (  203 => 94,  199 => 93,  180 => 105,  177 => 98,  175 => 93,  169 => 89,  160 => 87,  156 => 86,  151 => 83,  149 => 82,  137 => 72,  129 => 66,  123 => 62,  121 => 61,  116 => 58,  114 => 57,  109 => 55,  105 => 53,  101 => 51,  91 => 43,  85 => 39,  83 => 38,  77 => 34,  75 => 33,  72 => 32,  70 => 31,  38 => 1,);
+        return array (  207 => 98,  203 => 97,  184 => 109,  181 => 102,  179 => 97,  173 => 93,  164 => 91,  160 => 90,  155 => 87,  153 => 86,  141 => 76,  133 => 70,  123 => 62,  121 => 61,  116 => 58,  114 => 57,  109 => 55,  105 => 53,  101 => 51,  91 => 43,  85 => 39,  83 => 38,  77 => 34,  75 => 33,  72 => 32,  70 => 31,  38 => 1,);
     }
 
     public function getSourceContext()
@@ -234,8 +238,8 @@ class __TwigTemplate_dbe33aa63f5c834c38629f389c7395aed063055bc8249129b04ecf6c3df
 
     <script src=\"https://use.fontawesome.com/releases/v5.15.4/js/all.js\" crossorigin=\"anonymous\"></script>
     <link href=\"https://fonts.googleapis.com/css?family=Montserrat:400,700\" rel=\"stylesheet\" type=\"text/css\"/>
-    <link href=\"resources/css/styles.css\" rel=\"stylesheet\"/>
-    <link href=\"resources/css/forms.css\" rel=\"stylesheet\"/>
+    <link href=\"/resources/css/styles.css\" rel=\"stylesheet\"/>
+    <link href=\"/resources/css/forms.css\" rel=\"stylesheet\"/>
 
     <title>AuthSystem</title>
 </head>
@@ -282,10 +286,14 @@ class __TwigTemplate_dbe33aa63f5c834c38629f389c7395aed063055bc8249129b04ecf6c3df
                         <li class=\"nav-item\">
                             <a class='alert-link text-light' href=\"/Megafan\"> Megafan</a>
                         </li>
-                    {% elseif session['role']=='admin' %}
+                    {% elseif session['role']=='admin' or  session['role']=='super_user' %}
                         <li class=\"nav-item\">
-                            <a class='alert-link text-light' href=\"/admin\"> Administrar</a>
+                            <a class='alert-link text-light' href=\"/admin\"> Roles</a>
                         </li>
+                        <li>
+                            <a class='alert-link text-light' href=\"/admin/users\">Users</a>
+                        </li>
+
                     {% endif %}
                     <li class=\"nav-item\">
                         <a class=\"alert-link text-light\" href=\"/logout\"> Cerrar Sesión

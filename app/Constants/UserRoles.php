@@ -12,6 +12,7 @@ class UserRoles
     public static function toArray(): array
     {
         return [
+            self::SUPER_USER,
             self::ADMIN,
             self::MEGA_FAN,
             self::USER,
