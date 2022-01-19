@@ -47,13 +47,12 @@ class __TwigTemplate_d125d7605ea1c30da79d2a9040d1ec439d437dbe440ed50b66c87a18f82
     {
         $macros = $this->macros;
         // line 5
-        echo "
-    <header class=\"masthead bg-primary text-white text-center\">
+        echo "    <header class=\"masthead bg-primary text-white text-center\">
         <div class=\"container d-flex align-items-center flex-column\">
             <img class=\"masthead-avatar mb-5\" src=\"resources/assets/img/avataaars.svg\"/>
             <h1 class=\" text-uppercase mb-0\">";
-        // line 9
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "user", [], "any", false, false, false, 9), "username", [], "any", false, false, false, 9), "html", null, true);
+        // line 8
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "user", [], "any", false, false, false, 8), "username", [], "any", false, false, false, 8), "html", null, true);
         echo "</h1>
             <h1 class=\"masthead-heading text-uppercase mb-0\">Megafan</h1>
 
@@ -78,7 +77,7 @@ class __TwigTemplate_d125d7605ea1c30da79d2a9040d1ec439d437dbe440ed50b66c87a18f82
 
     public function getDebugInfo()
     {
-        return array (  56 => 9,  50 => 5,  46 => 4,  35 => 1,);
+        return array (  55 => 8,  50 => 5,  46 => 4,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -87,7 +86,6 @@ class __TwigTemplate_d125d7605ea1c30da79d2a9040d1ec439d437dbe440ed50b66c87a18f82
 
 
 {% block main %}
-
     <header class=\"masthead bg-primary text-white text-center\">
         <div class=\"container d-flex align-items-center flex-column\">
             <img class=\"masthead-avatar mb-5\" src=\"resources/assets/img/avataaars.svg\"/>

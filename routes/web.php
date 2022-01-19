@@ -46,11 +46,14 @@ $map->get('Megafan', '/Megafan', [
 $map->get('admin.users', '/admin/users', [
     'controller' => 'App\Controllers\AdminController'
     , 'action' => 'users']);
-$map->post('admin.users.update', '/admin/users/update', [
-    'controller' => 'App\Controllers\AdminController'
-    , 'action' => 'updateUsers']);
+
+$map->post('admin.users.update', '/admin/users/update',
+    ['controller' => 'App\Controllers\AdminController'
+        , 'action' => 'updateUsers']);
+
 
 $matcher = $routerContainer->getMatcher();
+
 $route = $matcher->match($request);
 
 
@@ -64,7 +67,10 @@ if (!$route) {
     }
 
     $_SESSION['route'] = $route->name;
+
+
     $handlerData = $route->handler;
+
     $action = $handlerData['action'];
     $controller = new $handlerData['controller'];
 

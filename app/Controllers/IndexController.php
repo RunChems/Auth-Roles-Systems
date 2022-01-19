@@ -19,6 +19,4 @@ class IndexController extends Controller
     {
         return self::view('megafan.twig');
     }
-
-
 }

@@ -75,7 +75,6 @@ class __TwigTemplate_d0cf4e01052715aa4bb1be98e748d4300c160f7a029ee32a63a20278fd3
                     <div class=\"card-body\">
                         Website made to retrieve information about Puebla Business and Schools
                     </div>
-
                 </div>
 
             </div>
@@ -147,7 +146,6 @@ class __TwigTemplate_d0cf4e01052715aa4bb1be98e748d4300c160f7a029ee32a63a20278fd3
                     <div class=\"card-body\">
                         Website made to retrieve information about Puebla Business and Schools
                     </div>
-
                 </div>
 
             </div>

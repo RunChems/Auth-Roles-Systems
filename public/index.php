@@ -17,7 +17,6 @@ session_start();
 $routerContainer = new RouterContainer();
 $map = $routerContainer->getMap();
 
-
 $request = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
     $_SERVER,
     $_GET,
